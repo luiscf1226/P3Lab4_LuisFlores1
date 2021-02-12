@@ -112,11 +112,15 @@ int main (){
        		}
        		string ver="";
        		int tt=0,ll=0;
+       		float p2=0;
+       		//verifico si son las mismas categorias con mi vector de categorias
        		for(int j=0;j<unicos.size();j++){
        			for(int k=1;k<unicos.size();k++){
        				if(unicos[j]!=unicos[k]){
        					categ2.push_back(unicos[j]);
        					tt++;
+       					producto *p1;
+       					p2+=p1->getPrecio();
 					   }else{
 					   	ll++;
 					   }
@@ -126,9 +130,20 @@ int main (){
        		cout<<"Total Productos Unicos: "<<tt<<endl;
        		cout<<"Precio Total del Inventario: "<<pp<<endl;
        		cout<<"Total de Productos Por Categoria: "<<ll<<endl;
-			
+			cout<<"Precio Total Por Categoria: "<<ll<<endl;
 		}//fin estadisticas
 		if(menu==3){
+			string bus;
+			cout<<"Busqueda en Producto: "<<endl;
+			cout<<"Ingrese Palabra a Buscar: "<<endl;
+			cin>>bus;
+			for(int i=0;i<productos.size();i++) {
+				producto *c = productos[i];
+				if(c->getNombre()==bus){
+					cout<<"si";
+				}
+			}
+
 			
 		}//fin busqueda
 	}

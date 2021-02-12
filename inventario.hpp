@@ -11,6 +11,7 @@ class inventario{
 	vector <string> categorias;
 	public:
 	inventario();
+	//inventario(vect)
 	inventario(vector<producto>,vector<string>);
 	~inventario();
 	vector<producto> getProductos();

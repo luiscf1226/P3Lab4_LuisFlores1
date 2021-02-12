@@ -11,6 +11,7 @@ int main (){
 	
 	float pp=0;
 	vector<producto*> productos;
+	vector<producto*> productos3;
 	vector<producto> productos2;
 	vector<inventario*> inventarios;
 	vector<string>categorias;
@@ -30,6 +31,7 @@ int main (){
 				cin>>m2;
 				
 				if(m2==1){
+				//	m2==4;
 					int id,cant;
 					string n,categ;
 					float precio;
@@ -140,11 +142,30 @@ int main (){
 			for(int i=0;i<productos.size();i++) {
 				producto *c = productos[i];
 				if(c->getNombre()==bus){
-					cout<<"si";
-				}
-			}
-
-			
+					//cout<<"si";
+					cout<<"PALABRA ENCONTRADA: "<<endl;
+					//productos.push_back(new producto(id,n,categ,cant,precio));
+					productos3.push_back(new producto(c->getId(),c->getNombre(),c->getCategoria(),c->getCantidad(),c->getPrecio()));
+					cout<<"El Subinventario es: "<<endl;
+					for(int i = 0; i < productos.size(); i++){
+          				producto *c = productos3[i];
+          				cout <<"------" << "Producto #" << i <<"------"<<endl;
+          				cout << c->toString() << endl;
+       				}	
+		     	}
+		   }
 		}//fin busqueda
-	}
+
+	}//fin while
+	for(int i = 0; i < productos.size(); i++){
+    	delete productos[i];
+  	}
+  	for(int i = 0; i < inventarios.size(); i++){
+    	delete inventarios[i];
+  	}
+  	for(int i = 0; i < productos3.size(); i++){
+    	delete productos3[i];
+  	}
+	
+	
 }

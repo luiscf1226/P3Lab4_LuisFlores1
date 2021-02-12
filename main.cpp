@@ -7,10 +7,15 @@
 #include "inventario.hpp"
 using namespace std;
 int main (){
+	int total;
+	
+	float pp=0;
 	vector<producto*> productos;
 	vector<producto> productos2;
 	vector<inventario*> inventarios;
 	vector<string>categorias;
+	vector<string>unicos;
+	vector<string>categ2;
 	int menu=0;
 	while(menu!=4){
 		cout<<"1. Mantenimiento de productos"<<endl;
@@ -38,13 +43,17 @@ int main (){
 					cin>>categ;
 					cout<<"Ingrese Precio: "<<endl;
 					cin>>precio;
+					pp+=precio;
+					unicos.push_back(n);
 					//producto p=(id,n,categ,cant,p);
 					productos.push_back(new producto(id,n,categ,cant,precio));
 					categorias.push_back(categ);
 					inventario in;
 					in.setCategorias(categorias);
 					in.setProductos(productos2);
+					total++;
 					cout<<"Creado Exitosamente"<<endl;
+					m2==4;
 				}//fin agregar
 				if(m2==2){
 					for(int i = 0; i < productos.size(); i++){
@@ -74,10 +83,11 @@ int main (){
 					s->setCantidad(cant);
 					s->setCategoria(categ);
 					s->setPrecio(precio);
-					
+					cout<<"Modificado Exitosamente"<<endl;
+					m2==4;
 				}//fin modificar
 				if(m2==3){
-						for(int i = 0; i < productos.size(); i++){
+					for(int i = 0; i < productos.size(); i++){
           				producto *c = productos[i];
           				cout <<"------" << "Producto #" << i <<"------"<<endl;
           				cout << c->toString() << endl;
@@ -87,12 +97,35 @@ int main (){
 			        cin >> prod;
 			        delete productos[prod];
 			        productos.erase(productos.begin()+prod);
-			        break;
-					
+					cout<<"modificado exitosamente"<<endl;
+					m2==4;
 				}//fin Eliminar
 			}
 		}//fin mantenimiento
 		if(menu==2){
+			cout<<"Estadisticas Generales..."<<endl;
+			cout<<"Productos: "<<endl;
+			for(int i = 0; i < productos.size(); i++){
+          		producto *c = productos[i];
+          		cout <<"------" << "Producto #" << i <<"------"<<endl;
+          		cout << c->toString() << endl;
+       		}
+       		string ver="";
+       		int tt=0,ll=0;
+       		for(int j=0;j<unicos.size();j++){
+       			for(int k=1;k<unicos.size();k++){
+       				if(unicos[j]!=unicos[k]){
+       					categ2.push_back(unicos[j]);
+       					tt++;
+					   }else{
+					   	ll++;
+					   }
+				   }
+			   }
+       		cout<<"Total Unidades: "<<total<<endl;
+       		cout<<"Total Productos Unicos: "<<tt<<endl;
+       		cout<<"Precio Total del Inventario: "<<pp<<endl;
+       		cout<<"Total de Productos Por Categoria: "<<ll<<endl;
 			
 		}//fin estadisticas
 		if(menu==3){
